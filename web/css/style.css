@@ -1,0 +1,44 @@
+#creditos {
+    font-size : 10px;
+}
+
+#h4error {
+    color: #c12e2a;
+}
+
+body {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+h3 {
+    color : #449d44;
+}
+
+
+.btn {
+    background: #449d44;
+    border-color: #449d44;
+}
+
+.btn:hover, btn:active {
+    background: #40ff00;
+    border-color: #40ff00;
+    color: #000000;
+}
+
+a:hover, a:active, a:link {
+    color: #40ff00;
+    
+}
+
+.botao {
+    background: #449d44;
+    border-color: #449d44;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+
+
+
