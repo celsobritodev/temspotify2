@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-     <servlet>
+    <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>br.com.professorisidro.temspotify.controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NovaMusicaServlet</servlet-name>
+        <servlet-class>br.com.professorisidro.temspotify.controller.NovaMusicaServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>20848820</max-file-size>
+            <max-request-size>418018841</max-request-size>
+        </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadMusicaServlet</servlet-name>
+        <servlet-class>br.com.professorisidro.temspotify.controller.UploadMusicaServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/loginservlet</url-pattern>
-    </servlet-mapping>  
+    </servlet-mapping>
     <servlet>
         <servlet-name>NovoUsuarioServlet</servlet-name>
         <servlet-class>br.com.professorisidro.temspotify.controller.NovoUsuarioServlet</servlet-class>
@@ -24,7 +36,7 @@
         <servlet-name>EfetivaCadastroServlet</servlet-name>
         <url-pattern>/efetivacadastro</url-pattern>
     </servlet-mapping>
-       <servlet>
+    <servlet>
         <servlet-name>NovaPlaylistServlet</servlet-name>
         <servlet-class>br.com.professorisidro.temspotify.controller.NovaPlaylistServlet</servlet-class>
     </servlet>
@@ -39,5 +51,21 @@
     <servlet-mapping>
         <servlet-name>PlaylistServlet</servlet-name>
         <url-pattern>/playlists</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EfetivaPlaylistServlet</servlet-name>
+        <servlet-class>br.com.professorisidro.temspotify.controller.EfetivaPlaylistServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EfetivaPlaylistServlet</servlet-name>
+        <url-pattern>/efetivaplaylist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NovaMusicaServlet</servlet-name>
+        <url-pattern>/novamusica</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadMusicaServlet</servlet-name>
+        <url-pattern>/uploadmusica</url-pattern>
     </servlet-mapping>
 </web-app>
