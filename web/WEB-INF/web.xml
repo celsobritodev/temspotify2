@@ -7,14 +7,15 @@
     <servlet>
         <servlet-name>NovaMusicaServlet</servlet-name>
         <servlet-class>br.com.professorisidro.temspotify.controller.NovaMusicaServlet</servlet-class>
-        <multipart-config>
-            <max-file-size>20848820</max-file-size>
-            <max-request-size>418018841</max-request-size>
-        </multipart-config>
+       
     </servlet>
     <servlet>
         <servlet-name>UploadMusicaServlet</servlet-name>
         <servlet-class>br.com.professorisidro.temspotify.controller.UploadMusicaServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>20848820</max-file-size>
+            <max-request-size>418018841</max-request-size>
+        </multipart-config>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>

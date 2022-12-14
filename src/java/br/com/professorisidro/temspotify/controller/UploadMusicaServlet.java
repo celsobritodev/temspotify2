@@ -32,6 +32,13 @@ public class UploadMusicaServlet extends HttpServlet {
         if (request.getSession().getAttribute("Usuario")!=null) {
             try {
                 
+                Collection<Part> partes =request.getParts();
+                for(Part p: partes) {
+                    String partName=p.getName();
+                    System.out.println("Formulario contem "+partName);
+                }
+                
+                
                 String artista = request.getParameter("txtArtista");
                 String album = request.getParameter("txtAlbum");
                 String titulo = request.getParameter("txtNomeMusica");
@@ -41,7 +48,7 @@ public class UploadMusicaServlet extends HttpServlet {
                 FileOutputStream arquivoMP3;
                 try (InputStream arqOriginal = request.getPart("fileMP3").getInputStream()) {
                     String nomeArquivo= getServletContext().getRealPath("/")
-                            +"/musicas"+request.getPart("fileMP3").getSubmittedFileName();
+                            +"/"+"musicas"+"/"+request.getPart("fileMP3").getSubmittedFileName();
                     System.out.println("Nome do arquivo "+nomeArquivo);
                     arquivoMP3 = new FileOutputStream(nomeArquivo);
                     byte b[] = new byte[1024];
@@ -51,11 +58,7 @@ public class UploadMusicaServlet extends HttpServlet {
                     }
                 }
                 arquivoMP3.close();
-                
-               Collection<Part> partes = request.getParts();
-               for (Part p :partes) {
-                   System.out.println("Formulario contem "+p.getName());
-               }
+             
             } catch (ServletException | IOException ex) {
                request.setAttribute("erroSTR", "ERRO: Upload falhou!");
             }
@@ -64,10 +67,7 @@ public class UploadMusicaServlet extends HttpServlet {
         } else {
             request.setAttribute("erroSTR", "Erro: Usuario não conectado");
         }
-                
-        
-     
-    }
+   }
 
    
 }

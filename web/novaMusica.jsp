@@ -49,7 +49,7 @@
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-8">
-                        <form  action="uploadmusica" method="post" enctype="multipart/form-data">
+                        <form  role="form" action="uploadmusica" method="post" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <label for="artista">
