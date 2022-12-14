@@ -4,6 +4,9 @@
  */
 package br.com.professorisidro.temspotify.controller;
 
+import br.com.professorisidro.temspotify.dao.DataSource;
+import br.com.professorisidro.temspotify.dao.MusicaDAO;
+import br.com.professorisidro.temspotify.model.Musica;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +15,10 @@ import jakarta.servlet.http.Part;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -47,8 +53,9 @@ public class UploadMusicaServlet extends HttpServlet {
                 
                 FileOutputStream arquivoMP3;
                 try (InputStream arqOriginal = request.getPart("fileMP3").getInputStream()) {
+                    String nomeArquivoOriginal = request.getPart("fileMP3").getSubmittedFileName();
                     String nomeArquivo= getServletContext().getRealPath("/")
-                            +"/"+"musicas"+"/"+request.getPart("fileMP3").getSubmittedFileName();
+                            +"musicas"+"\\"+nomeArquivoOriginal;
                     System.out.println("Nome do arquivo "+nomeArquivo);
                     arquivoMP3 = new FileOutputStream(nomeArquivo);
                     byte b[] = new byte[1024];
@@ -56,8 +63,27 @@ public class UploadMusicaServlet extends HttpServlet {
                         arqOriginal.read(b);
                         arquivoMP3.write(b);
                     }
+                   arqOriginal.close();
+                   arquivoMP3.close();
+                   
+                   Musica musica = new Musica();
+                   musica.setAlbum(album);
+                   musica.setArtista(artista);
+                   musica.setEstilo(estilo);
+                   musica.setLinkMP3("musicas/"+nomeArquivoOriginal);
+                   
+                   DataSource dataSource = new DataSource();
+                   MusicaDAO musicaDao = new MusicaDAO(dataSource);
+                   musicaDao.create(musica);
+                   dataSource.getConnection().close();
+                   
+                   paginaDestino ="/myAccount.jsp";
+                   
+                           
+                } catch (SQLException ex) {
+                    Logger.getLogger(UploadMusicaServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                arquivoMP3.close();
+              
              
             } catch (ServletException | IOException ex) {
                request.setAttribute("erroSTR", "ERRO: Upload falhou!");
