@@ -28,7 +28,7 @@ public class NovaMusicaServlet extends HttpServlet {
         if (request.getSession().getAttribute("Usuario")!=null) {
             paginaDestino="/novaMusica.jsp";
         } else {
-            request.setAttribute("erroSTR", "Erro: Usuario não conectado!");
+            request.setAttribute("erroSTR", " Usuario não conectado!");
         }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(paginaDestino);
         dispatcher.forward(request, response);

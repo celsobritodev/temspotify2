@@ -7,6 +7,7 @@ package br.com.professorisidro.temspotify.controller;
 import br.com.professorisidro.temspotify.dao.DataSource;
 import br.com.professorisidro.temspotify.dao.MusicaDAO;
 import br.com.professorisidro.temspotify.model.Musica;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,80 +21,80 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Celso
  */
 public class UploadMusicaServlet extends HttpServlet {
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         System.out.println("Passei por aqui!");
-        
+
         String paginaDestino = "/error.jsp";
-        if (request.getSession().getAttribute("Usuario")!=null) {
+        if (request.getSession().getAttribute("Usuario") != null) {
             try {
-                
-                Collection<Part> partes =request.getParts();
-                for(Part p: partes) {
-                    String partName=p.getName();
-                    System.out.println("Formulario contem "+partName);
+
+                Collection<Part> partes = request.getParts();
+                for (Part p : partes) {
+                    String partName = p.getName();
+                    System.out.println("Formulario contem " + partName);
                 }
-                
-                
+
                 String artista = request.getParameter("txtArtista");
                 String album = request.getParameter("txtAlbum");
                 String titulo = request.getParameter("txtNomeMusica");
                 String estiloStr = request.getParameter("txtEstilo");
                 int estilo = Integer.parseInt(estiloStr);
-                
+
                 FileOutputStream arquivoMP3;
-                try (InputStream arqOriginal = request.getPart("fileMP3").getInputStream()) {
+                try ( InputStream arqOriginal = request.getPart("fileMP3").getInputStream()) {
                     String nomeArquivoOriginal = request.getPart("fileMP3").getSubmittedFileName();
-                    String nomeArquivo= getServletContext().getRealPath("/")
-                            +"musicas"+"\\"+nomeArquivoOriginal;
-                    System.out.println("Nome do arquivo "+nomeArquivo);
+                    String nomeArquivo = getServletContext().getRealPath("/")
+                            + "musicas" + "\\" + nomeArquivoOriginal;
+                    System.out.println("Nome do arquivo " + nomeArquivo);
                     arquivoMP3 = new FileOutputStream(nomeArquivo);
                     byte b[] = new byte[1024];
-                    while (arqOriginal.available()>0) {
+                    while (arqOriginal.available() > 0) {
                         arqOriginal.read(b);
                         arquivoMP3.write(b);
                     }
-                   arqOriginal.close();
-                   arquivoMP3.close();
-                   
-                   Musica musica = new Musica();
-                   musica.setAlbum(album);
-                   musica.setArtista(artista);
-                   musica.setEstilo(estilo);
-                   musica.setLinkMP3("musicas/"+nomeArquivoOriginal);
-                   
-                   DataSource dataSource = new DataSource();
-                   MusicaDAO musicaDao = new MusicaDAO(dataSource);
-                   musicaDao.create(musica);
-                   dataSource.getConnection().close();
-                   
-                   paginaDestino ="/myAccount.jsp";
-                   
-                           
+                    arqOriginal.close();
+                    arquivoMP3.close();
+
+                    Musica musica = new Musica();
+
+                    musica.setArtista(artista);
+                    musica.setTitulo(titulo);
+                    musica.setAlbum(album);
+                    musica.setEstilo(estilo);
+                    musica.setLinkMP3("musicas/" + nomeArquivoOriginal);
+
+                    DataSource dataSource = new DataSource();
+                    MusicaDAO musicaDao = new MusicaDAO(dataSource);
+                    musicaDao.create(musica);
+                    dataSource.getConnection().close();
+                    paginaDestino = "/myAccount.jsp";
                 } catch (SQLException ex) {
                     Logger.getLogger(UploadMusicaServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-              
-             
-            } catch (ServletException | IOException ex) {
-               request.setAttribute("erroSTR", "ERRO: Upload falhou!");
-            }
-            
-            
-        } else {
-            request.setAttribute("erroSTR", "Erro: Usuario não conectado");
-        }
-   }
 
-   
+            } catch (ServletException | IOException ex) {
+                request.setAttribute("erroSTR", " Upload falhou!");
+                paginaDestino = "/error.jsp";
+            }
+
+        } else {
+            request.setAttribute("erroSTR", "Usuario não conectado");
+            paginaDestino = "/error.jsp";
+        }
+         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(paginaDestino);
+        dispatcher.forward(request, response);
+    }
+
+    
+    
+    
 }

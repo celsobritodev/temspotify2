@@ -39,6 +39,7 @@ public class MusicaDAO implements GenericDAO {
                      
            }
        } catch (SQLException ex) {
+           System.out.println("Erro:  "+ex.getMessage());
        }   
     }
 

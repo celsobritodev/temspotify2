@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tblplaylist`
+-- Table structure for table `tblmusica`
 --
 
-DROP TABLE IF EXISTS `tblplaylist`;
+DROP TABLE IF EXISTS `tblmusica`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tblplaylist` (
-  `idPlayList` int NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(150) DEFAULT NULL,
-  `idUsuario` int NOT NULL,
-  PRIMARY KEY (`idPlayList`),
-  KEY `fk_usuario` (`idUsuario`),
-  CONSTRAINT `fk_usuario` FOREIGN KEY (`idUsuario`) REFERENCES `tblusuario` (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tblmusica` (
+  `idMusica` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(45) NOT NULL,
+  `artista` varchar(45) NOT NULL,
+  `album` varchar(45) NOT NULL,
+  `estilo` int DEFAULT NULL,
+  `linkMP3` mediumtext,
+  PRIMARY KEY (`idMusica`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tblplaylist`
+-- Dumping data for table `tblmusica`
 --
 
-LOCK TABLES `tblplaylist` WRITE;
-/*!40000 ALTER TABLE `tblplaylist` DISABLE KEYS */;
-INSERT INTO `tblplaylist` VALUES (1,'Crassicos do roqui',1),(2,'Moda de viola nelvosa',1),(3,'tomatildo',1);
-/*!40000 ALTER TABLE `tblplaylist` ENABLE KEYS */;
+LOCK TABLES `tblmusica` WRITE;
+/*!40000 ALTER TABLE `tblmusica` DISABLE KEYS */;
+INSERT INTO `tblmusica` VALUES (1,'y','x','z',1,'musicas/He-Man.mp3'),(2,'c','c','c',1,'musicas/He-Man.mp3');
+/*!40000 ALTER TABLE `tblmusica` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-09 13:45:39
+-- Dump completed on 2022-12-14 19:55:21
