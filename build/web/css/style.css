@@ -32,6 +32,16 @@ a:hover, a:active, a:link {
     
 }
 
+
+.btnlink {
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 5px;
+    text-align: center;
+    
+}
+
 .botao {
     background: #449d44;
     border-color: #449d44;
@@ -39,6 +49,15 @@ a:hover, a:active, a:link {
     border-radius: 10px;
 }
 
+.artista{
+    color: #FFFFFF;
+    font-size: small;
+}
 
+.tituloMusica {
+    color: #FFFFFF;
+    font-size: medium;
+    
+}
 
 

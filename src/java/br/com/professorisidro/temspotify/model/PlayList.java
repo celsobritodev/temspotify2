@@ -15,7 +15,9 @@ public class PlayList implements Serializable{
     private int id;
     private String titulo;
     private Usuario usuario;
-
+    private List<Musica> musicas;
+    
+    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -23,7 +25,7 @@ public class PlayList implements Serializable{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    private List<Musica> musicas;
+
 
     public int getId() {
         return id;
@@ -45,7 +47,7 @@ public class PlayList implements Serializable{
      * @return the musicas
      */
     public List<Musica> getMusicas() {
-        return musicas;
+        return this.musicas;
     }
 
     /**
