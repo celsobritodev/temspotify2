@@ -16,7 +16,7 @@
 
     </head>
     <body>
-
+        ${Usuario.nome}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12" >
@@ -41,30 +41,30 @@
 
                 </div>  
             </div>
-            <div class="row" id="menu">
+            
+            
+        <div class="row" id="conteudo">
                 <div class="col-md-2">
                     &nbsp; 
                 </div> 
-                <div class="col-md-8">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Nova Playlist       </a>
-                        </li>
-                       <li class="nav-item">
-                            <a class="nav-link" href="playlists">Minha Playlist (myPlaylists.jsp)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">Upload Musica        </a>
-                        </li>
-                    </ul>
+                <div class="col-md-2 botao">
+                    <span class="text-center"><a  href="novamusica">Upload</a></span>
                 </div>
-                <div class="col-md-2">
-                    &nbsp;
-                </div>
+                <div class="col-md-2 botao">
+                      <span class="text-center"><a href="playlists"> Playlists</a></span>
+                 </div><!-- comment -->
+                 <div class="col-md-2 botao">
+                       <span class="text-center"><a href="novaplaylist">Add Playlist</a></span>
+                  </div><!-- comment -->
+                   <div class="col-md-2 botao">
+                       <span class="text-center"><a href="logout">Logout</a></span>
+                   </div>
+                   <div class="col-md-2">
+                     &nbsp;
+                   </div>
+            </div>                
 
-
-            </div>  
-      
+            
            <c:forEach items="${Usuario.playlists}" var="playlist">
               <div class="row">
                 <div class="col-md-2"> &nbsp; </div>

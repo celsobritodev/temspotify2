@@ -14,7 +14,7 @@
 
     </head>
     <body>
-
+      ${Usuario.nome}  
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12" >
@@ -39,27 +39,26 @@
 
                 </div>  
             </div>
+                    
             <div class="row" id="conteudo">
                 <div class="col-md-2">
                     &nbsp; 
                 </div> 
                 <div class="col-md-2 botao">
-                    <span class="text-center"><a  href="novamusica">Upload Musica</a></span>
+                    <span class="text-center"><a  href="novamusica">Upload</a></span>
                 </div>
-                  <div class="col-md-2 botao">
-                      <span class="text-center"><a href="playlists">Minhas Playlists (debug)</a></span>
+                <div class="col-md-2 botao">
+                      <span class="text-center"><a href="playlists"> Playlists</a></span>
+                 </div><!-- comment -->
+                 <div class="col-md-2 botao">
+                       <span class="text-center"><a href="novaplaylist">Add Playlist</a></span>
                   </div><!-- comment -->
-                    <div class="col-md-2 botao">
-                        <span class="text-center"><a href="novaplaylist">Nova Playlist</a></span>
-                    </div><!-- comment -->
                    <div class="col-md-2 botao">
                        <span class="text-center"><a href="logout">Logout</a></span>
                    </div>
-                <div class="col-md-2">
-                    &nbsp;
-                </div>
-
-
+                   <div class="col-md-2">
+                     &nbsp;
+                   </div>
             </div>                
 
 

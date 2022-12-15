@@ -42,47 +42,50 @@
 
                 </div>  
             </div>
-            <div class="row" id="menu">
+
+            <div class="row" id="conteudo">
                 <div class="col-md-2">
                     &nbsp; 
                 </div> 
-                <div class="col-md-8">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Nova Playlist       </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="playlists">Minha Playlist (myPlaylists.jsp)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">Upload Musica        </a>
-                        </li>
-                    </ul>
+                <div class="col-md-2 botao">
+                    <span class="text-center"><a  href="novamusica">Upload</a></span>
+                </div>
+                <div class="col-md-2 botao">
+                    <span class="text-center"><a href="playlists">Playlists </a></span>
+                </div><!-- comment -->
+                <div class="col-md-2 botao">
+                    <span class="text-center"><a href="novaplaylist">Add Playlist</a></span>
+                </div><!-- comment -->
+                <div class="col-md-2 botao">
+                    <span class="text-center"><a href="logout">Logout</a></span>
                 </div>
                 <div class="col-md-2">
                     &nbsp;
                 </div>
-            </div>  
+            </div>           
 
-          
-        
+            <div class="row">
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-8">
+                    <h4> ${PlayList.titulo}</h4> 
+                </div>    
+            </div>
+
+
             <c:forEach items="${PlayList.musicas}" var = "Musica">
                 <div class="row">
-                    <div col="col-md-2">&nbsp;</div>
-                    <div col=""col-md-8">
+                    <div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-8">
                         <span class="tituloMusica">
                             ${Musica.titulo}
                         </span> 
                         <span class="artista">
-                               ${Musica.artista} (Album: ${Musica.album})}
+                            ${Musica.artista} (Album: ${Musica.album})}
                         </span> 
                     </div>
-                    <div col="col-md-2">&nbsp;</div>
+                    <div class="col-md-2">&nbsp;</div>
                 </div>
             </c:forEach>
-
-
-
 
         </div>    
         <script src="js/jquery.min.js"></script>
