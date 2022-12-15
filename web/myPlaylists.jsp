@@ -69,12 +69,8 @@
               <div class="row">
                 <div class="col-md-2"> &nbsp; </div>
                 <div class="col-md-8">
-                    <strong> ${playlist.titulo}</strong><br>
-                    <ul>
-                    <c:forEach  items="${playlist.musicas}" var="musica">
-                        <li>${musica.titulo} (${musica.artista}) </li> 
-                    </c:forEach>
-                    </ul>    
+                    <strong><a href="playlistdetails?id=${playlist.id}"> ${playlist.titulo}</a></strong><br>
+                      
                 </div>
                 <div class="col-md-2"> &nbsp; </div>
             </div> 

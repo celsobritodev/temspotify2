@@ -4,6 +4,7 @@
  */
 package br.com.professorisidro.temspotify.dao;
 
+import br.com.professorisidro.temspotify.model.Musica;
 import br.com.professorisidro.temspotify.model.PlayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -81,5 +82,52 @@ public class PlaylistDAO implements GenericDAO {
     public void delete(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
+    
+    public PlayList readPlaylistDetailsById(int id) {
+        PlayList playlist;
+        try {
+            String SQL = "SELECT tblPlaylist.idPlaylist as idPlaylist, "
+                    + "       tblPlaylist.idUsuario as idUsuario,"
+                    + "       tblMusica.idMusica as idMusica,"
+                    + "       tblPlaylist.titulo as pl_titulo, "
+                    + "       tblMusica.titulo as mutitulo,"
+                    + "       tblMusica.artista as artista,"
+                    + "       tblMusica.album as album,"
+                    + "       tblMusica.estilo as estilo,"
+                    + "       tblMusica.linkMP3 AS linkMPE"
+                    + "  "
+                    + "  FROM tblplaylist"
+                    + "  left outer join tblmusicaplaylist using (idPlaylist) "
+                    + "  left outer join tblMusica using (idMusica) "
+                    + "  where idPlaylist = ?;";
+            PreparedStatement stm = dataSource.getConnection().prepareStatement(SQL);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            
+            if (rs.next()) {
+                playlist = new PlayList();
+                playlist.setMusicas(new ArrayList<Musica>());
+                playlist.setId(rs.getInt("idPlaylist"));
+                playlist.setTitulo(rs.getString("pl_titulo"));
+                if (rs.getString("mu_titulo") !=null) {
+                    Musica musica = new Musica();
+                    musica.setId(rs.getInt("idMusica"));
+                    musica.setTitulo(rs.getString("mu_titulo"));
+                    musica.setArtista(rs.getString("artista"));
+                    musica.setEstilo(rs.getInt("estilo"));
+                    musica.setAlbum(rs.getString("album"));
+                    musica.setLinkMP3(rs.getString("linkMP3"));
+                   playlist.getMusicas().add(musica);
+                    
+                    
+                }
+                
+            }
+        } 
+        catch (Exception ex) {
+            System.out.println("Erro ao recuperar detalhes da Playlist "+ex.getMessage());
+        }
+        return null;
+    }
 }

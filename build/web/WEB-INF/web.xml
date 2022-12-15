@@ -7,7 +7,6 @@
     <servlet>
         <servlet-name>NovaMusicaServlet</servlet-name>
         <servlet-class>br.com.professorisidro.temspotify.controller.NovaMusicaServlet</servlet-class>
-       
     </servlet>
     <servlet>
         <servlet-name>UploadMusicaServlet</servlet-name>
@@ -16,6 +15,10 @@
             <max-file-size>20848820</max-file-size>
             <max-request-size>418018841</max-request-size>
         </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>PlaylistDetailsServlet</servlet-name>
+        <servlet-class>br.com.professorisidro.temspotify.controller.PlaylistDetailsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -68,5 +71,9 @@
     <servlet-mapping>
         <servlet-name>UploadMusicaServlet</servlet-name>
         <url-pattern>/uploadmusica</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlaylistDetailsServlet</servlet-name>
+        <url-pattern>/playlistdetails</url-pattern>
     </servlet-mapping>
 </web-app>
