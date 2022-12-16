@@ -1,1 +1,3 @@
-// Empty JS for your own code to be here
+function adcionar (idPlaylist, idMusica) {
+    alert("Recebí os valores idPlaylist = "+idPlaylist+"  idMusica "+idMusica);
+}

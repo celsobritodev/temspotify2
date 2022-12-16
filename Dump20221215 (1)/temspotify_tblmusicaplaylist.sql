@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: temspotify
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -38,7 +38,7 @@ CREATE TABLE `tblmusicaplaylist` (
 
 LOCK TABLES `tblmusicaplaylist` WRITE;
 /*!40000 ALTER TABLE `tblmusicaplaylist` DISABLE KEYS */;
-INSERT INTO `tblmusicaplaylist` VALUES (4,1),(4,3);
+INSERT INTO `tblmusicaplaylist` VALUES (4,1),(4,2),(4,3);
 /*!40000 ALTER TABLE `tblmusicaplaylist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-15 12:42:03
+-- Dump completed on 2022-12-15 22:54:09
