@@ -9,12 +9,33 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>.:  TemSpotify by TemAula!  :.</title>
+
         <meta name="description" content="Source code generated using layoutit.com">
         <meta name="author" content="LayoutIt!">
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+
+        <script>
+            function adicionar(idPlaylist, idMusica) {
+                var xmlhttp = new XMLHttpRequest();
+           //  alert("Recebí os valores idPlaylist = " + idPlaylist + "  idMusica " + idMusica);
+            //    var pagina="oi";
+                var pagina =" http://localhost:8080/TemSpotify2/incluirnaplaylist?idplaylist="+idPlaylist+"&idmusica="+idMusica;
+                 xmlhttp.open("GET",pagina);
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.status === 200 && xmlhttp.readyState === 4) {
+                        alert(xmlhttp.responseText);
+                    }
+               };
+                xmlhttp.send();        
+          
+         //   alert(pagina);
+            }
+        </script>    
+
 
     </head>
     <body>
@@ -68,12 +89,12 @@
 
 
             <br>
-            
+
             <c:forEach items="${ListaMusicas}" var="musica">
                 <div class="row">
                     <div class="col-md-2">  </div>
                     <div class="col-md-1"> 
-                        <button class="btn" onclick="adicionar(${idPlaylist},${idMusica})">+ </button> 
+                        <button class="btn" onclick="adicionar(${idPlaylist},${musica.id})">+ </button> 
                     </div>
                     <div class="col-md-7">
                         ${musica.titulo}  (${musica.artista}) <br/>
@@ -85,10 +106,10 @@
                             <c:if test="${musica.estilo == 4}">ELETRÔNICO </c:if>
                             <c:if test="${musica.estilo == 5}">JOVEM PAN STYLE </c:if>
                             <c:if test="${musica.estilo == 6}">OUTROS </c:if>
-                        </span>    
-                    </div>
-                    <div class="col-md-2"> &nbsp; </div>
-                </div> 
+                            </span>    
+                        </div>
+                        <div class="col-md-2"> &nbsp; </div>
+                    </div> 
             </c:forEach>
         </div>    
         <script src="js/jquery.min.js"></script>
