@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-md-2">&nbsp;</div>
                 <div class="col-md-8">
-                    <h4> ${PlayList.titulo} <img  id="imgplay"  src="images//play4.png" alt="Tocal Playlist" title="Tocar Playlist" >  </h4> 
+                    <h4> ${PlayList.titulo} <a href="player"> <img  id="imgplay"  src="images//play4.png" alt="Tocal Playlist" title="Tocar Playlist" > </a> </h4> 
                 </div> 
                 <div class="col-md-2">&nbsp;</div>
             </div>

@@ -32,8 +32,9 @@ public class PlaylistServlet extends HttpServlet {
         String paginaDestino = "/myPlaylists.jsp";
         try {
             Usuario usuario = (Usuario) request.getSession().getAttribute("Usuario");
-            System.out.println("Logado "+usuario.getNome());
+       
             if (usuario != null) {
+                System.out.println("Logado "+usuario.getNome());
                 if (usuario.getPlaylists() == null) {
                     DataSource dataSource = new DataSource();
                     PlaylistDAO plDAO = new PlaylistDAO(dataSource);
