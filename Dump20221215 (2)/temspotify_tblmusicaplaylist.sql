@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tblmusica`
+-- Table structure for table `tblmusicaplaylist`
 --
 
-DROP TABLE IF EXISTS `tblmusica`;
+DROP TABLE IF EXISTS `tblmusicaplaylist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tblmusica` (
-  `idMusica` int NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(45) NOT NULL,
-  `artista` varchar(45) NOT NULL,
-  `album` varchar(45) NOT NULL,
-  `estilo` int DEFAULT NULL,
-  `linkMP3` mediumtext,
-  PRIMARY KEY (`idMusica`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tblmusicaplaylist` (
+  `idPlaylist` int NOT NULL,
+  `idMusica` int NOT NULL,
+  PRIMARY KEY (`idPlaylist`,`idMusica`),
+  KEY `fk_mu` (`idMusica`),
+  CONSTRAINT `fk_mu` FOREIGN KEY (`idMusica`) REFERENCES `tblmusica` (`idMusica`),
+  CONSTRAINT `fk_pl` FOREIGN KEY (`idPlaylist`) REFERENCES `tblplaylist` (`idPlayList`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tblmusica`
+-- Dumping data for table `tblmusicaplaylist`
 --
 
-LOCK TABLES `tblmusica` WRITE;
-/*!40000 ALTER TABLE `tblmusica` DISABLE KEYS */;
-INSERT INTO `tblmusica` VALUES (1,'Tema do He Man','Principe Adam','Desenhos Animados',6,'musicas/He-Man.mp3'),(2,'Send me an Angel','Real Life','Diversos',6,'musicas/He-Man.mp3'),(3,'Tema de Abertura do Silver Howkis','QuickSilver','Desenhos animados',6,'musicas/He-Man.mp3'),(4,'Always On My Mind','Pet Shop Boys','Album Leg',5,'musicas/He-Man.mp3');
-/*!40000 ALTER TABLE `tblmusica` ENABLE KEYS */;
+LOCK TABLES `tblmusicaplaylist` WRITE;
+/*!40000 ALTER TABLE `tblmusicaplaylist` DISABLE KEYS */;
+INSERT INTO `tblmusicaplaylist` VALUES (2,1),(3,1),(4,1),(2,2),(3,2),(4,2),(3,3),(4,3),(2,4),(3,4),(4,4),(2,5),(3,5),(4,5),(4,6);
+/*!40000 ALTER TABLE `tblmusicaplaylist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-15 22:54:09
+-- Dump completed on 2022-12-18 12:32:47

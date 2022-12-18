@@ -16,6 +16,51 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
 
+        <style>
+
+            .musica {
+                font-family: Verdana;
+                display: block;
+                font-style: italic;
+                height: 45px;
+                width: 100%;
+                margin: 10px;
+                color: black;
+                padding-top: 15px;
+                padding-left: 50px;
+                background-color: #66ff66;
+                border-radius: 5px;
+                background-image: url('./images/play4.png');
+                background-repeat: no-repeat;
+                background-size: 40px 40px;
+                background-position: left top;
+            }
+            
+            #musicplayer {
+                width: 100%;
+                position: fixed;
+                bottom: 0;
+            }
+            
+            #nowPlaying {
+                width: 100%;
+                border-radius: 10px;
+                height: 50px;
+                background-color: #80ff80;
+                color: black;
+            }
+            
+            #playerContent {
+                margin-bottom: 80px;
+            }
+            
+
+
+
+
+        </style>
+
+
         <script type ="text/javascript">
 
             var musics = new Array(); // lista de musicas
@@ -23,6 +68,7 @@
             var currentSong = 0;
             var totalMusicas = 0;
             var URL = "http://localhost:8080/TemSpotify2/";
+            var player;
 
             function setupPlayer() {
                 var divMusicas = document.getElementById("playerContent");
@@ -37,14 +83,15 @@
                 console.log(musics);
                 console.log(repeat);
                 console.log(totalMusicas);
-                
-                var player = document.getElementById("musicplayer");
+
+                player = document.getElementById("musicplayer");
                 // colocando ao musica inicial
                 player.src = URL + musics[0];
-                
+                document.getElementById("nowPlaying").innerHTML="Now Playing: "+document.getElementById(musics[currentSong]).innerHTML;
+
                 // funcao para quando terminar a musica
                 player.onended = function () {
-                    if (currentSong <musics.length ) {
+                    if (currentSong < musics.length - 1) {
                         currentSong = currentSong + 1;
                         player.src = URL + musics[currentSong];
                         player.play();
@@ -58,7 +105,8 @@
                             alert("Fim das músicas");
                         }
                     }
-                  console.log("Musica atual = "+currentSong);
+                    console.log("Musica atual = " + currentSong);
+                    document.getElementById("nowPlaying").innerHTML="Now Playing: "+document.getElementById(musics[currentSong]).innerHTML;
                 };
 
             }
@@ -78,8 +126,24 @@
 
 
             function play(objetoMusica) {
-                console.log("Vai tocar a musica");
+                console.log("tocando agora..." + objetoMusica.title);
+                for (i = 0; i < musics.length; i++) {
+
+                    if (musics[i] === objetoMusica.title) {
+                        console.log("Valor de musics[i]= '" + musics[i] + "''");
+                        console.log("Valor de objetoMusica= '" + objetoMusica.title + "'");
+                        console.log("--------------------------------------------------");
+                        currentSong = i;
+                        aTocar = URL + musics[currentSong];
+                        player.src = aTocar;
+                        console.log("musica a tocar " + aTocar);
+                        player.play();
+                        document.getElementById("nowPlaying").innerHTML="Now Playing: "+document.getElementById(musics[currentSong]).innerHTML;
+                    }
+                }
             }
+
+
 
         </script>    
 
@@ -103,7 +167,8 @@
             </c:forEach>
         </div>
 
-        <div>
+        <div id="playerdiv">
+            <div id="nowPlaying">Now Playing: </div>
             <audio id="musicplayer" controls controlsList="nodownload"> </audio>
         </div>
 
