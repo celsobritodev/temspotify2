@@ -53,10 +53,6 @@
             #playerContent {
                 margin-bottom: 80px;
             }
-            
-
-
-
 
         </style>
 
@@ -119,11 +115,7 @@
                 {
                     document.getElementById("imgRepeat").src = "images/repeat_gray.png";
                 }
-
             }
-
-
-
 
             function play(objetoMusica) {
                 console.log("tocando agora..." + objetoMusica.title);
@@ -143,8 +135,6 @@
                 }
             }
 
-
-
         </script>    
 
     </head>
@@ -161,7 +151,7 @@
         </div>
         <div id="playerContent">
             <c:forEach var="music"  items="${PlayList.musicas}">
-                <div title="${music.linkMP3}" class="musica" onClick="play(this);">
+                <div  id="nowPlaying" title="${music.linkMP3}" class="musica" onClick="play(this);">
                     ${music.titulo}  (${music.artista})
                 </div>
             </c:forEach>
@@ -169,7 +159,7 @@
 
         <div id="playerdiv">
             <div id="nowPlaying">Now Playing: </div>
-            <audio id="musicplayer" controls controlsList="nodownload"> </audio>
+            <audio id="musicplayer" controls="" controlsList="nodownload"> 
         </div>
 
         <script src="js/jquery.min.js"></script>
